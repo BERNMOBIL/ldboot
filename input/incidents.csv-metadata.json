@@ -1,0 +1,64 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "https://github.com/BERNMOBIL/opendata-verkehrsmeldungen/raw/master/incidents.csv",
+  "dialect": {
+    "delimiter": ";"
+  },
+  "tableSchema": {
+    "aboutUrl": "http://ld.bernmobil.ch/verkehrsmeldungen/{ID}",
+    "columns": [
+      {
+        "titles": "ID",
+        "propertyUrl": "http://schema.org/identifier"
+      },
+      {
+        "titles": "Titel",
+        "propertyUrl": "http://schema.org/name"
+      },
+      {
+        "titles": "Transportunternehmen",
+        "propertyUrl": "http://example.org/Transportunternehmen"
+      },
+      {
+        "titles": "Kurze Meldung",
+        "propertyUrl": "http://schema.org/description"
+      },
+      {
+        "titles": "Lange Meldung",
+        "propertyUrl": "http://example.org/langeMeldung"
+      },
+      {
+        "titles": "Endmeldung",
+        "propertyUrl": "http://example.org/endmeldung"
+      },
+      {
+        "titles": "Start Ereigniszeitpunkt",
+        "propertyUrl": "http://example.org/startEregniszeitpunkt"
+      },
+      {
+        "titles": "Ende Ereigniszeitpunkt",
+        "propertyUrl": "http://example.org/endeEreigniszeitpunkt"
+      },
+      {
+        "titles": "Zeitpunkt Meldung beendet",
+        "propertyUrl": "http://example.org/zeitpunktMeldungBeendet"
+      },
+      {
+        "titles": "Start Publikationszeitpunk",
+        "propertyUrl": "http://example.org/startPublikationszeitpunk"
+      },
+      {
+        "titles": "Ende Publikationszeitpunk",
+        "propertyUrl": "http://example.org/endePublikationszeitpunk"
+      },
+      {
+        "titles": "Linien",
+        "propertyUrl": "http://example.org/linien"
+      },
+      {
+        "titles": "Haltestelle",
+        "propertyUrl": "http://example.org/haltestelle"
+      }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "ldboot",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:BERNMOBIL/ldboot.git"
+  },
+  "dependencies": {
+    "barnard59": "git+https://github.com/zazuko/barnard59.git#master",
+    "json": "^9.0.6"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.2"
+  },
+  "scripts": {
+    "clean": "rm -rf target/*",
+    "fetch-incidents": "curl -L `node node_modules/json/lib/json.js url -f input/incidents.csv-metadata.json` -o input/incidents.csv",
+    "convert": "mkdir -p target && node index.js",
+    "clean-dimensions": "cat target/incidents.nt | sed '/_:/d' | sed '/<file/d' > target/incidents-clean.nt",
+    "put-void": "./scripts/lindas-put-void.sh",
+    "post-incidents": "./scripts/lindas-post-dimensions.sh"
+  }
+}
