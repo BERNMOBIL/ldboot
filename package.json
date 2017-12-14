@@ -18,7 +18,7 @@
     "clean": "rm -rf target/*",
     "fetch-incidents": "curl -L `node node_modules/json/lib/json.js url -f input/incidents.csv-metadata.json` -o input/incidents.csv",
     "convert": "mkdir -p target && node index.js",
-    "clean-dimensions": "cat target/incidents.nt | sed '/_:/d' | sed '/<file/d' > target/incidents-clean.nt",
+    "clean-incidents": "cat target/incidents.nt | sed '/_:/d' | sed '/<file/d' > target/incidents-clean.nt",
     "put-void": "./scripts/lindas-put-void.sh",
     "post-incidents": "./scripts/lindas-post-dimensions.sh"
   }
