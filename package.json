@@ -16,7 +16,7 @@
   },
   "scripts": {
     "clean": "rm -rf target/*",
-    "fetch-incidents": "curl -L `node node_modules/json/lib/json.js url -f input/incidents.csv-metadata.json` -o input/incidents.csv",
+    "fetch-incidents": "curl -s -L `node node_modules/json/lib/json.js url -f input/incidents.csv-metadata.json` -o input/incidents.csv",
     "convert": "mkdir -p target && node index.js",
     "clean-incidents": "cat target/incidents.nt | sed '/_:/d' | sed '/<file/d' > target/incidents-clean.nt",
     "put-void": "./scripts/lindas-put-void.sh",
