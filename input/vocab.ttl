@@ -1,0 +1,28 @@
+@base <http://ld.bernmobil.ch/vocab/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sem: <http://semanticweb.cs.vu.nl/2009/11/sem/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<Event> a rdfs:Class ;
+    rdfs:label "Der Event, das primäre Ereignis"@de ;
+    rdfs:subClassOf sem:Event .
+
+<PublicationEvent> a rdfs:Class ;
+    rdfs:label "Publikation des Events"@de ;
+    rdfs:subClassOf sem:Event .
+
+<NotificationEvent> a rdfs:Class ;
+    rdf:label "Notifikation des Events"@de ;
+    rdfs:subClassOf sem:Event .
+
+# TODO Domain/Range?
+<description> a rdf:Proerty ;
+    rdfs:label "Meldung"@de ;
+    rdfs:subPropertyOf skos:prefLabel .
+
+<longDescription> a rdf:Proerty ;
+    rdfs:label "Lange Meldung"@de ;
+    rdfs:subPropertyOf skos:altLabel .
+
