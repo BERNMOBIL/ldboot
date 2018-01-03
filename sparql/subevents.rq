@@ -1,0 +1,29 @@
+PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>
+PREFIX ex: <http://example.org/>
+
+INSERT { GRAPH <http://inference> {
+
+  ?s sem:hasSubEvent ?publicationUri .
+  ?s sem:hasSubEvent ?notificationUri .
+
+  
+  ?publicationUri a sem:Event ;
+    sem:hasBeginTimeStamp ?startPublikationszeitpunk ;
+      sem:hasEndTimeStamp ?endePublikationszeitpunk .
+  
+  ?notificationUri a sem:Event ;
+    sem:hasEndTimeStamp ?endeEreigniszeitpunkt .
+  }}
+ WHERE {
+  ?s a sem:Event ;
+  	ex:startEregniszeitpunkt ?startEregniszeitpunkt ;
+    ex:endeEreigniszeitpunkt ?endeEreigniszeitpunkt ;
+    ex:zeitpunktMeldungBeendet ?zeitpunktMeldungBeendet ;
+    ex:startPublikationszeitpunk ?startPublikationszeitpunk .
+  OPTIONAL { ?s ex:endePublikationszeitpunk ?endePublikationszeitpunk . }
+      
+  BIND(URI(CONCAT(STR(?s), "#publication")) AS ?publicationUri)
+  BIND(URI(CONCAT(STR(?s), "#notification")) AS ?notificationUri)
+
+      
+}
