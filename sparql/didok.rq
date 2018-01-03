@@ -1,0 +1,17 @@
+PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>
+PREFIX ex: <http://example.org/>
+PREFIX bm: <http://ld.bernmobil.ch/vocab/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT * 
+ WHERE {
+  ?s a bm:Event ;
+ex:haltestelle ?haltestelle .
+  
+  SERVICE <http://lod.opentransportdata.swiss/query> {
+     GRAPH <https://linked.opendata.swiss/graph/FOT/didok> {
+    ?didok rdfs:label ?haltestelle .
+  }
+  }
+      
+}
