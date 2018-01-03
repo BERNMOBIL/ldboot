@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "barnard59": "git+https://github.com/zazuko/barnard59.git#master",
-    "json": "^9.0.6"
+    "json": "^9.0.6",
+    "moment": "^2.20.1"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.2"

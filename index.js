@@ -19,12 +19,33 @@ function convertCsvw (filename) {
         const predicate = quad.predicate
         const object = quad.object
 
-        if (predicate.value.includes('zeitpunk')) {
+        if(predicate.value.includes('zeitpunk')) {
           const xsddateTime = 'http://www.w3.org/2001/XMLSchema#dateTime'
 
           const dateTime = moment(object.value, 'DD-MM-YYYY HH:mm:ss').format()
           
           return p.rdf.quad(subject, predicate, p.rdf.literal(dateTime, p.rdf.namedNode(xsddateTime)))
+        } else if(predicate.value.includes('haltestelle')) {
+          let station = object.value
+
+          //  TODO für den Rest: Zuerst schauen ob es den kompletten String gibt. Falls nicht für "Bern, $1" nochmals probieren.
+          //const simple = ['Scheyenholz', 'Rüfenacht', 'Langenloh']
+
+          const replacements = new Map([
+            ['Bern Bahnhof', 'Bern, Bahnhof'],
+            ['Liebefeld, Lerbermatt', 'Köniz, Lerbermatt'],
+            ['Liebefeld Park', 'Köniz, Liebefeld Park'],
+            ['Liebefeld, Sportweg', 'Köniz, Sportweg'],
+            ['Liebefeld, Neuhausplatz', 'Köniz, Neuhausplatz'],
+            ['Friedhof Nesslerenholz', 'Wabern, Friedhof Nesslerenholz'],
+            ['(Belp|Wabern|Konolfingen|Köniz)\s', '$1, ']
+            ])
+          
+          replacements.forEach(function(value, key){
+              station = station.replace(key, value);
+          });
+
+          return p.rdf.quad(subject, predicate, p.rdf.literal(station))      
         } else {
           return quad
         }
