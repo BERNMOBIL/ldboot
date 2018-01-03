@@ -58,6 +58,11 @@
       {
         "titles": "Haltestelle",
         "propertyUrl": "http://example.org/haltestelle"
+      },
+      {
+        "virtual":true,
+        "propertyUrl":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "valueUrl":"http://semanticweb.cs.vu.nl/2009/11/sem/Event"
       }
     ]
   }
