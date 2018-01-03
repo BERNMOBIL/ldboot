@@ -1,5 +1,6 @@
 PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>
 PREFIX ex: <http://example.org/>
+PREFIX bm: <http://ld.bernmobil.ch/vocab/>
 
 INSERT { GRAPH <http://inference> {
 
@@ -7,21 +8,22 @@ INSERT { GRAPH <http://inference> {
   ?s sem:hasSubEvent ?notificationUri .
 
   
-  ?publicationUri a sem:Event ;
+  ?publicationUri a bm:PublicationEvent ;
     sem:hasBeginTimeStamp ?startPublikationszeitpunk ;
       sem:hasEndTimeStamp ?endePublikationszeitpunk .
   
-  ?notificationUri a sem:Event ;
+  ?notificationUri a bm:NotificationEvent ;
     sem:hasEndTimeStamp ?endeEreigniszeitpunkt .
   }}
  WHERE {
-  ?s a sem:Event ;
+  ?s a bm:Event ;
   	ex:startEregniszeitpunkt ?startEregniszeitpunkt ;
     ex:endeEreigniszeitpunkt ?endeEreigniszeitpunkt ;
     ex:zeitpunktMeldungBeendet ?zeitpunktMeldungBeendet ;
     ex:startPublikationszeitpunk ?startPublikationszeitpunk .
   OPTIONAL { ?s ex:endePublikationszeitpunk ?endePublikationszeitpunk . }
-      
+  OPTIONAL { ?s ex:endmeldung ?endmeldung . } # TODO wohin gehört die?
+     
   BIND(URI(CONCAT(STR(?s), "#publication")) AS ?publicationUri)
   BIND(URI(CONCAT(STR(?s), "#notification")) AS ?notificationUri)
 
