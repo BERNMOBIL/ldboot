@@ -28,9 +28,6 @@ function convertCsvw (filename) {
         } else if(predicate.value.includes('haltestelle')) {
           let station = object.value
 
-          //  TODO für den Rest: Zuerst schauen ob es den kompletten String gibt. Falls nicht für "Bern, $1" nochmals probieren.
-          //const simple = ['Scheyenholz', 'Rüfenacht', 'Langenloh']
-
           const replacements = new Map([
             ['Bern Bahnhof', 'Bern, Bahnhof'],
             ['Liebefeld, Lerbermatt', 'Köniz, Lerbermatt'],
@@ -38,7 +35,20 @@ function convertCsvw (filename) {
             ['Liebefeld, Sportweg', 'Köniz, Sportweg'],
             ['Liebefeld, Neuhausplatz', 'Köniz, Neuhausplatz'],
             ['Friedhof Nesslerenholz', 'Wabern, Friedhof Nesslerenholz'],
-            ['(Belp|Wabern|Konolfingen|Köniz)\s', '$1, ']
+            ['Gurtenbahn', 'Wabern, Gurtenbahn'],
+            ['Neuhausplatz', 'Köniz, Neuhausplatz'],
+            ['Brühlplatz', 'Köniz, Brühlplatz'],
+            ['Sportweg', 'Köniz, Sportweg'],
+            ['Alpenstrasse', 'Wabern, Alpenstrasse'],
+            ['Weyergut', 'Wabern, Weyergut'],
+            ['Camping Eichholz', 'Wabern, Camping Eichholz'],
+            ['Eichholz', 'Wabern, Eichholz'],
+            ['Lerbermatt', 'Köniz, Lerbermatt'],
+            ['Europaplatz Bahnhof', 'Bern Europaplatz, Bahnhof'],
+            ['Hessstrasse', 'Liebefeld, Hessstrasse'],
+            ['Thomasweg', 'Köniz, Thomasweg'],
+            ['Weissenbühl', 'Bern Weissenbühl'],
+            [/(Belp|Wabern|Konolfingen|Köniz|Münsingen)\s/, '$1, ']
             ])
           
           replacements.forEach(function(value, key){
