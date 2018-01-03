@@ -35,20 +35,20 @@ function convertCsvw (filename) {
             ['Liebefeld, Sportweg', 'Köniz, Sportweg'],
             ['Liebefeld, Neuhausplatz', 'Köniz, Neuhausplatz'],
             ['Friedhof Nesslerenholz', 'Wabern, Friedhof Nesslerenholz'],
-            ['Gurtenbahn', 'Wabern, Gurtenbahn'],
-            ['Neuhausplatz', 'Köniz, Neuhausplatz'],
+            [/^Gurtenbahn$/, 'Wabern, Gurtenbahn'],
+            [/^Neuhausplatz$/, 'Köniz, Neuhausplatz'],
             ['Brühlplatz', 'Köniz, Brühlplatz'],
-            ['Sportweg', 'Köniz, Sportweg'],
+            [/^Sportweg$/, 'Köniz, Sportweg'],
             ['Alpenstrasse', 'Wabern, Alpenstrasse'],
             ['Weyergut', 'Wabern, Weyergut'],
             ['Camping Eichholz', 'Wabern, Camping Eichholz'],
-            ['Eichholz', 'Wabern, Eichholz'],
+            [/^Eichholz$/, 'Wabern, Eichholz'],
             ['Lerbermatt', 'Köniz, Lerbermatt'],
             ['Europaplatz Bahnhof', 'Bern Europaplatz, Bahnhof'],
             ['Hessstrasse', 'Liebefeld, Hessstrasse'],
             ['Thomasweg', 'Köniz, Thomasweg'],
             ['Weissenbühl', 'Bern Weissenbühl'],
-            [/(Belp|Wabern|Konolfingen|Köniz|Münsingen)\s/, '$1, ']
+            [/^(Belp|Wabern|Konolfingen|Köniz|Münsingen)\s/, '$1, ']
             ])
           
           replacements.forEach(function(value, key){

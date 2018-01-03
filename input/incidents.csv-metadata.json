@@ -53,7 +53,8 @@
       },
       {
         "titles": "Linien",
-        "propertyUrl": "http://example.org/linien"
+        "propertyUrl": "http://ld.bernmobil.ch/vocab/route",
+        "valueUrl": "http://ld.bernmobil.ch/linie/{Linien}"
       },
       {
         "titles": "Haltestelle",

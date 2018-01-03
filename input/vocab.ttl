@@ -26,3 +26,6 @@
     rdfs:label "Lange Meldung"@de ;
     rdfs:subPropertyOf skos:altLabel .
 
+<route> a rdf:Proerty ;
+    rdfs:label "Linie"@de ;
+    rdfs:label "Route"@en .
