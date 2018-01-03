@@ -1,5 +1,6 @@
 const p = require('barnard59')
 const path = require('path')
+const moment = require('moment')
 
 function convertCsvw (filename) {
   const filenameInput = 'input/' + filename
@@ -12,26 +13,18 @@ function convertCsvw (filename) {
         baseIRI: 'file://' + filename,
         metadata: metadata
       }))
-      .pipe(p.filter((quad) => {
-        return quad.predicate.value !== 'http://ld.stadt-zuerich.ch/statistics/property/XXX'
-      }))
       .pipe(p.map((quad) => {
-        if (quad.predicate.value === 'http://ld.stadt-zuerich.ch/statistics/property/WERT') {
-          //const value = quad.object.value.split(' ').join('')
-          const value = quad.object.value.split(' ').join('')
 
-          var valnumber
+        const subject = quad.subject
+        const predicate = quad.predicate
+        const object = quad.object
 
-          // workaround to kick out all non-numbers
-          if(isNaN(parseFloat(value))) {
-            valnumber = 0
-          } else {
-            valnumber = parseFloat(value)
+        if (predicate.value.includes('zeitpunk')) {
+          const xsddateTime = 'http://www.w3.org/2001/XMLSchema#dateTime'
 
-          }
+          const dateTime = moment(object.value, 'DD-MM-YYYY HH:mm:ss').format()
           
-          //return p.rdf.quad(quad.subject, quad.predicate, p.rdf.literal(value, quad.object.datatype))          
-          return p.rdf.quad(quad.subject, quad.predicate, p.rdf.literal(valnumber, quad.object.datatype))
+          return p.rdf.quad(subject, predicate, p.rdf.literal(dateTime, p.rdf.namedNode(xsddateTime)))
         } else {
           return quad
         }
