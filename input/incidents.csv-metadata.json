@@ -21,11 +21,11 @@
       },
       {
         "titles": "Kurze Meldung",
-        "propertyUrl": "http://schema.org/description"
+        "propertyUrl": "http://ld.bernmobil.ch/vocab/description"
       },
       {
         "titles": "Lange Meldung",
-        "propertyUrl": "http://example.org/langeMeldung"
+        "propertyUrl": "http://ld.bernmobil.ch/vocab/longDescription"
       },
       {
         "titles": "Endmeldung",
@@ -62,7 +62,7 @@
       {
         "virtual":true,
         "propertyUrl":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-        "valueUrl":"http://semanticweb.cs.vu.nl/2009/11/sem/Event"
+        "valueUrl":"http://ld.bernmobil.ch/vocab/Event"
       }
     ]
   }
