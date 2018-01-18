@@ -1,6 +1,8 @@
 image: zazukoians/node-java-jena
 before_script:
   - scripts/bootstrap.sh
+  - npm install
+
 
 # stages
 stages:
