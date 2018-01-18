@@ -1,5 +1,5 @@
 #!/bin/sh
-ENDPOINT=${ENDPOINT:=http://localhost:5820/ssz}
+ENDPOINT=${ENDPOINT:=http://localhost:5820/bernmobil}
 echo "Posting to endpoint: $ENDPOINT"
 curl -n \
      -X PUT \

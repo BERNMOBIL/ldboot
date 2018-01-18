@@ -1,21 +1,13 @@
-image: node:8.9
+image: zazukoians/node-java-jena
 before_script:
-  - npm install
-
-variables:
-  ADMIN_PASSWORD: 'cinderella'
-  JVM_ARGS: '-Xmx2g'
-  FUSEKI_HOST: 'fuseki'
-
-services:
-  - name: stain/jena-fuseki
-    alias: fuseki
-
+  - scripts/bootstrap.sh
 
 # stages
 stages:
 - fetch
 - convert
+- staging
+- validate
 - post
 
 # jobs
@@ -38,3 +30,31 @@ convert_job:
     paths:
       - target/incidents-clean.nt
     expire_in: 1 hour
+
+staging_tdb_job:
+  stage: staging
+  script:
+    - npm run tdb-load
+    - npm run tdb-query
+    - npm run tdb-dump
+  artifacts:
+    paths:
+      - target/everything.nt
+    expire_in: 1 day
+
+validate_riot_job:
+  stage: validate
+  script:
+    - npm run validate-riot
+  artifacts:
+    paths:
+      - target/everything.nt
+    expire_in: 1 day
+
+post_test_job:
+  stage: post
+  only:
+    - tags
+#    - develop
+  script:
+    - npm run bernmobil-lindas-test

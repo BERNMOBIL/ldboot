@@ -21,9 +21,10 @@
     "fetch-incidents": "curl -s -L `node node_modules/json/lib/json.js url -f input/incidents.csv-metadata.json` -o input/incidents.csv",
     "convert": "mkdir -p target && node index.js",
     "clean-incidents": "cat target/incidents.nt | sed '/_:/d' | sed '/<file/d' > target/incidents-clean.nt",
-    "tdb-load": "tdbloader --loc target/incidents-clean.nt",
+    "tdb-load": "tdbloader --loc=target/tdb_bernmobil target/incidents-clean.nt",
     "tdb-query": "./scripts/tdb-query.sh",
     "tdb-dump": "./scripts/tdb-dump.sh",
+    "validate-riot": "riot --validate target/everything.nt",
     "bernmobil-lindas-test": "env ENDPOINT=https://test.lindas-data.ch:8443/lindas ./scripts/lindas-put-everything.sh",
     "build": "npm-run-all clean  fetch-incidents convert clean-incidents tdb-load tdb-query tdb-dump"
   }
