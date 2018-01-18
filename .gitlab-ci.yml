@@ -53,8 +53,8 @@ validate_riot_job:
 
 post_test_job:
   stage: post
-  only:
-    - tags
+#  only:
+#    - tags
 #    - develop
   script:
     - npm run bernmobil-lindas-test

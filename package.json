@@ -26,6 +26,6 @@
     "tdb-dump": "./scripts/tdb-dump.sh",
     "validate-riot": "riot --validate target/everything.nt",
     "bernmobil-lindas-test": "env ENDPOINT=https://test.lindas-data.ch:8443/lindas ./scripts/lindas-put-everything.sh",
-    "build": "npm-run-all clean  fetch-incidents convert clean-incidents tdb-load tdb-query tdb-dump"
+    "build": "npm-run-all clean  fetch-incidents convert clean-incidents tdb-load tdb-query tdb-dump validate-riot"
   }
 }
