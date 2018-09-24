@@ -1,0 +1,218 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix rml: <http://semweb.mmlab.be/ns/rml#>.
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix carml: <http://carml.taxonic.com/carml/> .
+@prefix bm:   <http://vocab.bernmobil.com/ticket#> .
+@prefix sem: <http://semanticweb.cs.vu.nl/2009/11/sem/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<#SubjectMapping> a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source [
+      a carml:Stream ;
+    ] ;
+    rml:referenceFormulation ql:XPath ;
+    rml:iterator "/Tickets/Ticket" ;
+  ] ;
+
+  rr:subjectMap [
+    rr:template "http://data.bernmobil.com/ticket/{./ObjectID}" ;
+    rr:class bm:Ticket ;
+    rr:termType rr:IRI ;
+  ] ;
+  
+  rr:predicateObjectMap [
+		rr:predicate sem:eventType;
+		rr:objectMap [
+			rr:template "http://data.bernmobil.com/ticket/type/{./Typ}";
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate dc:identifier;
+		rr:objectMap [
+			rml:reference "ObjectID";
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate rdfs:label;
+		rr:objectMap [
+			rml:reference "TypBezeichnung";	
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate sem:hasBegingTimeStamp;
+		rr:objectMap [
+			rr:template "{AngelegtAm}T{AngelegtUm}";	
+			rr:datatype xsd:dateTime;
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate dcterms:modified;
+		rr:objectMap [
+			rr:template "{GeaendertAm}T{GeaendertUm}";	
+			rr:datatype xsd:dateTime;
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate <http://schema.org/category>;
+		rr:objectMap [
+			carml:multiTemplate  "http://data.bernmobil.com/ticket/category/{./Kategorien/Kategorie/ID}";	
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate <http://schema.org/category>;
+		rr:objectMap [
+			carml:multiTemplate  "http://data.bernmobil.com/ticket/category/{./Kategorien/Kategorie/ID}";	
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate bm:hasPartner;
+		rr:objectMap [
+			carml:multiTemplate  "http://data.bernmobil.com/ticket/partner/{./Partners/Partner/GUID}";	
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate bm:hasTerm;
+		rr:objectMap [
+			carml:multiTemplate  "http://data.bernmobil.com/ticket/term/{./Termine/Termin/GUID}";	
+		];
+  ].
+  
+<#Termin> a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source [
+      a carml:Stream ;
+    ] ;
+    rml:referenceFormulation ql:XPath ;
+    rml:iterator "/Tickets/Ticket/Termine/Termin" ;
+  ] ;
+
+  rr:subjectMap [
+    rr:template "http://data.bernmobil.com/ticket/term/{./GUID}" ;
+    rr:class bm:Term ;
+    rr:termType rr:IRI ;
+  ] ;
+  
+  rr:predicateObjectMap [
+		rr:predicate sem:eventType;
+		rr:objectMap [
+			rml:reference "Type";
+		];
+  ];
+  
+   rr:predicateObjectMap [
+		rr:predicate sem:hasBeginTimeStamp;
+		rr:objectMap [
+			rr:template "{VonDatum}T{VonZeit}";	
+			rr:datatype xsd:dateTime;
+		];
+  ];
+  
+   rr:predicateObjectMap [
+		rr:predicate sem:hasEndTimeStamp;
+		rr:objectMap [
+			rr:template "{BisDatum}T{BisZeit}";	
+			rr:datatype xsd:dateTime;
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate rdfs:label;
+		rr:objectMap [
+			rml:reference "Bezeichnung";
+		];
+  ].
+  
+<#Partner> a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source [
+      a carml:Stream ;
+    ] ;
+    rml:referenceFormulation ql:XPath ;
+    rml:iterator "/Tickets/Ticket/Partners/Partner" ;
+  ] ;
+
+  rr:subjectMap [
+    rr:template "http://data.bernmobil.com/ticket/partner/{./GUID}" ;
+    rr:class bm:Partner ;
+    rr:termType rr:IRI ;
+  ] ;
+  
+  rr:predicateObjectMap [
+		rr:predicate sem:actorType;
+		rr:objectMap [
+			rml:reference "Funktion";
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate dcterms:description;
+		rr:objectMap [
+			rml:reference "Beschreibung";
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate dc:identifier;
+		rr:objectMap [
+			rml:reference "GUID";
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate rdfs:label;
+		rr:objectMap [
+			rml:reference "Name1";
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate rdfs:label;
+		rr:objectMap [
+			rml:reference "Name2";
+		];
+  ].
+  
+  
+<#Categories> a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source [
+      a carml:Stream ;
+    ] ;
+    rml:referenceFormulation ql:XPath ;
+    rml:iterator "/Tickets/Ticket/Kategorien/Kategorie" ;
+  ] ;
+
+  rr:subjectMap [
+    rr:template "http://data.bernmobil.com/ticket/category/{./ID}" ;
+    rr:class bm:Category ;
+    rr:termType rr:IRI ;
+  ] ;
+  
+  rr:predicateObjectMap [
+		rr:predicate dc:identifier;
+		rr:objectMap [
+			rml:reference "ID";
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate rdfs:label;
+		rr:objectMap [
+			rml:reference "Bezeichnung";
+		];
+  ].
+  
+  
