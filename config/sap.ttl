@@ -20,7 +20,7 @@
   ] ;
 
   rr:subjectMap [
-    rr:template "http://data.bernmobil.com/ticket/{./ObjectID}" ;
+    rr:template "http://ld.bernmobil.ch/ticket/{./ObjectID}" ;
     rr:class bm:Ticket ;
     rr:termType rr:IRI ;
   ] ;
@@ -28,7 +28,7 @@
   rr:predicateObjectMap [
 		rr:predicate sem:eventType;
 		rr:objectMap [
-			rr:template "http://data.bernmobil.com/ticket/type/{./Typ}";
+			rr:template "http://ld.bernmobil.ch/ticket/type/{./Typ}";
 		];
   ];
   
@@ -65,28 +65,28 @@
   rr:predicateObjectMap [
 		rr:predicate <http://schema.org/category>;
 		rr:objectMap [
-			carml:multiTemplate  "http://data.bernmobil.com/ticket/category/{./Kategorien/Kategorie/ID}";	
+			carml:multiTemplate  "http://ld.bernmobil.ch/ticket/category/{./Kategorien/Kategorie/ID}";	
 		];
   ];
   
   rr:predicateObjectMap [
 		rr:predicate <http://schema.org/category>;
 		rr:objectMap [
-			carml:multiTemplate  "http://data.bernmobil.com/ticket/category/{./Kategorien/Kategorie/ID}";	
+			carml:multiTemplate  "http://ld.bernmobil.ch/ticket/category/{./Kategorien/Kategorie/ID}";	
 		];
   ];
   
   rr:predicateObjectMap [
 		rr:predicate bm:hasPartner;
 		rr:objectMap [
-			carml:multiTemplate  "http://data.bernmobil.com/ticket/partner/{./Partners/Partner/GUID}";	
+			carml:multiTemplate  "http://ld.bernmobil.ch/ticket/partner/{./Partners/Partner/GUID}";	
 		];
   ];
   
   rr:predicateObjectMap [
 		rr:predicate bm:hasTerm;
 		rr:objectMap [
-			carml:multiTemplate  "http://data.bernmobil.com/ticket/term/{./Termine/Termin/GUID}";	
+			carml:multiTemplate  "http://ld.bernmobil.ch/ticket/term/{./Termine/Termin/GUID}";	
 		];
   ].
   
@@ -100,7 +100,7 @@
   ] ;
 
   rr:subjectMap [
-    rr:template "http://data.bernmobil.com/ticket/term/{./GUID}" ;
+    rr:template "http://ld.bernmobil.ch/ticket/term/{./GUID}" ;
     rr:class bm:Term ;
     rr:termType rr:IRI ;
   ] ;
@@ -145,7 +145,7 @@
   ] ;
 
   rr:subjectMap [
-    rr:template "http://data.bernmobil.com/ticket/partner/{./GUID}" ;
+    rr:template "http://ld.bernmobil.ch/ticket/partner/{./GUID}" ;
     rr:class bm:Partner ;
     rr:termType rr:IRI ;
   ] ;
@@ -196,7 +196,7 @@
   ] ;
 
   rr:subjectMap [
-    rr:template "http://data.bernmobil.com/ticket/category/{./ID}" ;
+    rr:template "http://ld.bernmobil.ch/ticket/category/{./ID}" ;
     rr:class bm:Category ;
     rr:termType rr:IRI ;
   ] ;
