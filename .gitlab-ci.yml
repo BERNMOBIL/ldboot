@@ -45,6 +45,7 @@ convert_incidents_job:
 convert_sap_job:
   stage: convert
   script:
+    - npm run fetch-carml
     - npm run convert-sap
   artifacts:
     paths:
