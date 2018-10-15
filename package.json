@@ -22,7 +22,7 @@
     "fetch-sap": "mkdir -p tmp/xml && curl --user $BM_USER:$BM_PASSWORD https://webdav.netlabs.org/bernmobil/bernmobil-sap.zip -o tmp/bernmobil-sap.zip && unzip -d tmp/xml tmp/bernmobil-sap.zip '*.xml'",
     "fetch-carml": "mkdir -p tmp/lib && curl -L https://github.com/netage/carml-cli/releases/download/0.0.2/cli-0.0.2-SNAPSHOT-jar-with-dependencies.jar -o tmp/lib/carml-cli.jar",
     "convert-incidents": "mkdir -p target && node index.js",
-    "convert-sap-zkdr": "JVM_ARGS=-Xmx6G mkdir -p target && java -jar tmp/lib/carml-cli.jar -f tmp/xml/ZKDR -m config/sap.ttl -o target/sap-zkdr.ttl",
+    "convert-sap-zkdr": "JVM_ARGS=-Xmx7G mkdir -p target && java -jar tmp/lib/carml-cli.jar -f tmp/xml/ZKDR -m config/sap.ttl -o target/sap-zkdr.ttl",
     "convert-sap-zlst": "JVM_ARGS=-Xmx6G mkdir -p target && java -jar tmp/lib/carml-cli.jar -f tmp/xml/ZLST -m config/sap.ttl -o target/sap-zlst.ttl",
     "clean-incidents": "cat target/incidents.nt | sed '/_:/d' | sed '/<file/d' > target/incidents-clean.nt",
     "tdb-load": "tdbloader --loc=target/tdb_bernmobil target/incidents-clean.nt target/sap-*.ttl",
