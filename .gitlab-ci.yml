@@ -44,6 +44,8 @@ convert_incidents_job:
 
 convert_sap_job:
   stage: convert
+  tags:
+      - medium
   script:
     - npm run fetch-carml
     - npm run convert-sap
