@@ -2,13 +2,12 @@
 @prefix rml: <http://semweb.mmlab.be/ns/rml#>.
 @prefix ql: <http://semweb.mmlab.be/ns/ql#> .
 @prefix carml: <http://carml.taxonic.com/carml/> .
-@prefix bm:   <http://vocab.bernmobil.com/ticket#> .
+@prefix bm:   <http://ld.bernmobil.ch/vocab/ticket#> .
 @prefix sem: <http://semanticweb.cs.vu.nl/2009/11/sem/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <#SubjectMapping> a rr:TriplesMap ;
   rml:logicalSource [
@@ -55,17 +54,66 @@
   ];
   
   rr:predicateObjectMap [
-		rr:predicate dcterms:modified;
+		rr:predicate bm:linie;
 		rr:objectMap [
-			rr:template "{GeaendertAm}T{GeaendertUm}";	
-			rr:datatype xsd:dateTime;
+			carml:multiTemplate  "http://ld.bernmobil.ch/ticket/linie/{./Linie/ID}";	
+		];
+  ];
+  
+    rr:predicateObjectMap [
+		rr:predicate bm:richtung;
+		rr:objectMap [
+			carml:multiTemplate  "http://ld.bernmobil.ch/ticket/richtung/{./Richtung/ID}";	
+		];
+  ];
+  
+      rr:predicateObjectMap [
+		rr:predicate bm:haltestelle;
+		rr:objectMap [
+			carml:multiTemplate  "http://ld.bernmobil.ch/ticket/haltestelle/{./Haltestelle/ID}";	
+		];
+  ];
+  
+    rr:predicateObjectMap [
+		rr:predicate bm:bezugsobjekt;
+		rr:objectMap [
+			carml:multiTemplate  "http://ld.bernmobil.ch/ticket/bezugsobjekt/{./Bezugsobjekt/ObjektNummer}";	
+		];
+  ];
+  
+rr:predicateObjectMap [
+		rr:predicate bm:fahrzeug;
+		rr:objectMap [
+			carml:multiTemplate  "http://ld.bernmobil.ch/ticket/fahrzeug/{./Fahrzeug/ObjektNummer}";	
 		];
   ];
   
   rr:predicateObjectMap [
-		rr:predicate <http://schema.org/category>;
+		rr:predicate bm:eingangskanal;
 		rr:objectMap [
-			carml:multiTemplate  "http://ld.bernmobil.ch/ticket/category/{./Kategorien/Kategorie/ID}";	
+			carml:multiTemplate  "http://ld.bernmobil.ch/ticket/eingangskanal/{./Eingangskanal/ID}";	
+		];
+  ];
+  
+    rr:predicateObjectMap [
+		rr:predicate bm:kundenzufriedenheit;
+		rr:objectMap [
+			carml:multiTemplate  "http://ld.bernmobil.ch/ticket/kundenzufriedenheit/{./Kundenzufriedenheit/ID}";	
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate bm:sachverhalte;
+		rr:objectMap [
+			carml:multiTemplate  "http://ld.bernmobil.ch/ticket/sachverhalte/{./Sachverhalte/Sachverhalt/CodeGruppe}/{./Sachverhalte/Sachverhalt/Code}";	
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate dcterms:modified;
+		rr:objectMap [
+			rr:template "{GeaendertAm}T{GeaendertUm}";	
+			rr:datatype xsd:dateTime;
 		];
   ];
   
@@ -215,4 +263,272 @@
 		];
   ].
   
+<#Linie> a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source [
+      a carml:Stream ;
+    ] ;
+    rml:referenceFormulation ql:XPath ;
+    rml:iterator "/Tickets/Ticket/Linie" ;
+  ] ;
+
+  rr:subjectMap [
+    rr:template "http://ld.bernmobil.ch/ticket/linie/{./ID}" ;
+    rr:class bm:Linie ;
+    rr:termType rr:IRI ;
+  ] ;
   
+  rr:predicateObjectMap [
+		rr:predicate dc:identifier;
+		rr:objectMap [
+			rml:reference "ID";
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate rdfs:label;
+		rr:objectMap [
+			rml:reference "Bezeichnung";
+		];
+  ].
+  
+<#Richtung> a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source [
+      a carml:Stream ;
+    ] ;
+    rml:referenceFormulation ql:XPath ;
+    rml:iterator "/Tickets/Ticket/Richtung" ;
+  ] ;
+
+  rr:subjectMap [
+    rr:template "http://ld.bernmobil.ch/ticket/richtung/{./ID}" ;
+    rr:class bm:Richtung ;
+    rr:termType rr:IRI ;
+  ] ;
+  
+  rr:predicateObjectMap [
+		rr:predicate dc:identifier;
+		rr:objectMap [
+			rml:reference "ID";
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate rdfs:label;
+		rr:objectMap [
+			rml:reference "Bezeichnung";
+		];
+  ].
+  
+<#Haltestelle> a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source [
+      a carml:Stream ;
+    ] ;
+    rml:referenceFormulation ql:XPath ;
+    rml:iterator "/Tickets/Ticket/Haltestelle" ;
+  ] ;
+
+  rr:subjectMap [
+    rr:template "http://ld.bernmobil.ch/ticket/haltestelle/{./ID}" ;
+    rr:class bm:Haltestelle ;
+    rr:termType rr:IRI ;
+  ] ;
+  
+  rr:predicateObjectMap [
+		rr:predicate dc:identifier;
+		rr:objectMap [
+			rml:reference "ID";
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate rdfs:label;
+		rr:objectMap [
+			rml:reference "Bezeichnung";
+		];
+  ].
+  
+<#Bezugsobjekt> a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source [
+      a carml:Stream ;
+    ] ;
+    rml:referenceFormulation ql:XPath ;
+    rml:iterator "/Tickets/Ticket/Bezugsobjekt" ;
+  ] ;
+
+  rr:subjectMap [
+    rr:template "http://ld.bernmobil.ch/ticket/bezugsobjekt/{./objektNummer}" ;
+    rr:class bm:Bezugsobjekt ;
+    rr:termType rr:IRI ;
+  ] ;
+  
+  rr:predicateObjectMap [
+		rr:predicate dc:identifier;
+		rr:objectMap [
+			rml:reference "ObjektNummer";
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate bm:technIdentifikation;
+		rr:objectMap [
+			rml:reference "TechnIdentifikation";
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate rdfs:label;
+		rr:objectMap [
+			rml:reference "Bezeichnung";
+		];
+  ].
+  
+  
+  
+<#Fahrzeug> a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source [
+      a carml:Stream ;
+    ] ;
+    rml:referenceFormulation ql:XPath ;
+    rml:iterator "/Tickets/Ticket/Fahrzeug" ;
+  ] ;
+
+  rr:subjectMap [
+    rr:template "http://ld.bernmobil.ch/ticket/fahrzeug/{./ObjektNummer}" ;
+    rr:class bm:Fahrzeug ;
+    rr:termType rr:IRI ;
+  ] ;
+  
+  rr:predicateObjectMap [
+		rr:predicate dc:identifier;
+		rr:objectMap [
+			rml:reference "ID";
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate bm:technIdentifikation;
+		rr:objectMap [
+			rml:reference "TechnIdentifikation";
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate bm:objektNummer;
+		rr:objectMap [
+			rml:reference "ObjektNummer";
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate rdfs:label;
+		rr:objectMap [
+			rml:reference "Bezeichnung";
+		];
+  ].
+  
+<#Eingangskanal> a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source [
+      a carml:Stream ;
+    ] ;
+    rml:referenceFormulation ql:XPath ;
+    rml:iterator "/Tickets/Ticket/Eingangskanal" ;
+  ] ;
+
+  rr:subjectMap [
+    rr:template "http://ld.bernmobil.ch/ticket/eingangskanal/{./ID}" ;
+    rr:class bm:Eingangskanal ;
+    rr:termType rr:IRI ;
+  ] ;
+  
+  rr:predicateObjectMap [
+		rr:predicate dc:identifier;
+		rr:objectMap [
+			rml:reference "ID";
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate rdfs:label;
+		rr:objectMap [
+			rml:reference "Bezeichnung";
+		];
+  ].
+  
+<#Kundenzufriedenheit> a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source [
+      a carml:Stream ;
+    ] ;
+    rml:referenceFormulation ql:XPath ;
+    rml:iterator "/Tickets/Ticket/Kundenzufriedenheit" ;
+  ] ;
+
+  rr:subjectMap [
+    rr:template "http://ld.bernmobil.ch/ticket/kundenzufriedenheit/{./ID}" ;
+    rr:class bm:Kundenzufriedenheit ;
+    rr:termType rr:IRI ;
+  ] ;
+  
+  rr:predicateObjectMap [
+		rr:predicate dc:identifier;
+		rr:objectMap [
+			rml:reference "ID";
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate rdfs:label;
+		rr:objectMap [
+			rml:reference "Bezeichnung";
+		];
+  ].
+  
+  
+<#Sachverhalte> a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source [
+      a carml:Stream ;
+    ] ;
+    rml:referenceFormulation ql:XPath ;
+    rml:iterator "/Tickets/Ticket/Sachverhalte/Sachverhalt" ;
+  ] ;
+
+  rr:subjectMap [
+    rr:template "http://ld.bernmobil.ch/ticket/sachverhalte/{./CodeGruppe}/{./Code}" ;
+    rr:class bm:Sachverhalte ;
+    rr:termType rr:IRI ;
+  ] ;
+  
+  rr:predicateObjectMap [
+		rr:predicate bm:code;
+		rr:objectMap [
+			rml:reference "Code";
+		];
+  ];
+  
+  rr:predicateObjectMap [
+		rr:predicate bm:codeGruppe;
+		rr:objectMap [
+			rml:reference "CodeGruppe";
+		];
+  ];
+  
+    rr:predicateObjectMap [
+		rr:predicate rdfs:label;
+		rr:objectMap [
+			rml:reference "CGBezeichnung";
+		];
+	];
+  
+  rr:predicateObjectMap [
+		rr:predicate rdfs:label;
+		rr:objectMap [
+			rml:reference "CodeBezeichnung";
+		];
+  ].

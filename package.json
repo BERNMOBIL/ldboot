@@ -19,13 +19,17 @@
   "scripts": {
     "clean": "rm -rf target/*",
     "fetch-incidents": "curl -s -L `node node_modules/json/lib/json.js url -f input/incidents.csv-metadata.json` -o input/incidents.csv",
-    "convert": "mkdir -p target && node index.js",
+    "fetch-sap": "mkdir -p tmp/xml && curl --user $BM_USER:$BM_PASSWORD https://webdav.netlabs.org/bernmobil/bernmobil-sap.zip -o tmp/bernmobil-sap.zip && unzip -d tmp/xml tmp/bernmobil-sap.zip '*.xml'",
+    "fetch-carml": "mkdir -p tmp/lib && curl -L https://github.com/netage/carml-cli/releases/download/0.0.2/cli-0.0.2-SNAPSHOT-jar-with-dependencies.jar -o tmp/lib/carml-cli.jar",
+    "convert-incidents": "mkdir -p target && node index.js",
+    "convert-sap": "java -jar tmp/lib/carml-cli.jar -f tmp/xml/ZKDR -m config/sap.ttl -o target/sap.ttl",
     "clean-incidents": "cat target/incidents.nt | sed '/_:/d' | sed '/<file/d' > target/incidents-clean.nt",
     "tdb-load": "tdbloader --loc=target/tdb_bernmobil target/incidents-clean.nt",
     "tdb-query": "./scripts/tdb-query.sh",
     "tdb-dump": "./scripts/tdb-dump.sh",
     "validate-riot": "riot --validate target/everything.nt",
     "bernmobil-lindas-test": "env ENDPOINT=https://test.lindas-data.ch:8443/lindas ./scripts/lindas-put-everything.sh",
+    "bernmobil-zazuko": "env ENDPOINT=http://data.zazuko.com/bernmobil ./scripts/lindas-put-everything.sh",
     "build": "npm-run-all clean  fetch-incidents convert clean-incidents tdb-load tdb-query tdb-dump validate-riot"
   }
 }

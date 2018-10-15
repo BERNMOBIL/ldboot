@@ -23,14 +23,32 @@ fetch_incidents_job:
       - input/incidents.csv
     expire_in: 30 minutes
 
-convert_job:
+fetch_sap_job:
+  stage: fetch
+  script:
+    - npm run fetch-sap
+  artifacts:
+    paths:
+      - tmp/xml/
+    expire_in: 30 minutes
+
+convert_incidents_job:
   stage: convert
   script:
-    - npm run convert
+    - npm run convert-incidents
     - npm run clean-incidents
   artifacts:
     paths:
       - target/incidents-clean.nt
+    expire_in: 1 hour
+
+convert_sap_job:
+  stage: convert
+  script:
+    - npm run convert-sap
+  artifacts:
+    paths:
+      - target/sap.ttl
     expire_in: 1 hour
 
 staging_tdb_job:
