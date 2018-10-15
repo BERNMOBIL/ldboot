@@ -48,10 +48,12 @@ convert_sap_job:
       - large
   script:
     - npm run fetch-carml
-    - npm run convert-sap
+    - npm run convert-sap-zlst
+    - npm run convert-sap-zkdr
   artifacts:
     paths:
-      - target/sap.ttl
+      - target/sap-zkdr.ttl
+      - target/sap-zlst.ttl
     expire_in: 1 hour
 
 staging_tdb_job:
