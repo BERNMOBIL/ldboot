@@ -52,8 +52,8 @@ convert_sap_job:
     - npm run convert-sap-zkdr
   artifacts:
     paths:
-      - target/sap-zkdr.ttl
-      - target/sap-zlst.ttl
+      - target/sap-zkdr.nt
+      - target/sap-zlst.nt
     expire_in: 1 hour
 
 staging_tdb_job:
