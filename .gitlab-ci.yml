@@ -44,8 +44,8 @@ convert_incidents_job:
 
 convert_sap_job:
   stage: convert
-  tags:
-      - ssz
+#  tags:
+#      - ssz
   script:
     - npm run fetch-carml
     - npm run convert-sap-zlst
