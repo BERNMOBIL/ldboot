@@ -78,8 +78,14 @@ validate_riot_job:
 
 post_test_job:
   stage: post
-#  only:
-#    - tags
-#    - develop
+  except:
+    - tags
   script:
     - npm run bernmobil-integ-s3
+
+post_prod_job:
+  stage: post
+  only:
+    - tags
+  script:
+    - npm run bernmobil-prod-s3
