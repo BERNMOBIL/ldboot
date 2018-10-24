@@ -32,7 +32,7 @@
     "bernmobil-lindas-test": "env ENDPOINT=https://test.lindas-data.ch:8443/lindas ./scripts/lindas-put-everything.sh",
     "bernmobil-zazuko": "env ENDPOINT=http://data.zazuko.com/bernmobil ./scripts/lindas-put-everything.sh",
     "bernmobil-integ-s3": "ENDPOINT=http://data.zazuko.com/lindas STORE_USER=$STORE_USER_INTEG STORE_PASSWORD=$STORE_PASSWORD_INTEG ./scripts/store-s3.sh",    
-    "bernmobil-prod-s3": "ENDPOINT=https://lindas-data.ch:8443/lindas STORE_USER=$STORE_USER_PROD STORE_PASSWORD=$STORE_PASSWORD_PROD ./scripts/store-s3.sh",
+    "bernmobil-prod-s3": "ENDPOINT=https://test.lindas-data.ch:8443/lindas STORE_USER=$STORE_USER_PROD STORE_PASSWORD=$STORE_PASSWORD_PROD ./scripts/store-s3.sh",
     "build": "npm-run-all clean  fetch-incidents convert clean-incidents tdb-load tdb-query tdb-dump validate-riot"
   }
 }
