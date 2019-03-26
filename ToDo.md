@@ -35,9 +35,20 @@ vocab.resc.info/incident
 
 ### Fragen
 
-- wohin gehört ex:endmeldung?
+- Anlieferung SAP
+- Vokabular SAP
+- Unterschied
+    - ZKDR Kundenreaktionen
+    - ZLST -> Leitstellen Tickets (Betriebsereignis)
+- Seit April keine neuen Incidents mehr?
 - haben wir Metadaten zu allen Linien?
     - Shapes
     - Beschreibung
     - Farben
     - Etc
+
+
+Term -> Termin -> sem:Event
+haltestelle auf didok http://ld.bernmobil.ch/ticket/haltestelle/79896
+check ob es bezugsobjekt gibt, wir verweisen drauf mit bm:bezugsobjekt aber kanns nicht auflösen als objekt
+gitlab zugang

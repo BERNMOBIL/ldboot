@@ -1,0 +1,29 @@
+@base <http://ld.bernmobil.ch/code/> .
+@prefix bm:   <http://ld.bernmobil.ch/vocab/ticket#> .
+@prefix sem: <http://semanticweb.cs.vu.nl/2009/11/sem/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+
+<kat1> a bm:DamageType, skos:Concept ;
+    rdfs:label "Fahrzeug Bernmobil Innenanzeige"@de .
+
+<kat2> a bm:DamageType, skos:Concept ;
+    rdfs:label "Fahrzeug Bernmobil Billettautomat"@de .
+
+<kat3> a bm:DamageType, skos:Concept ;
+    rdfs:label "Fahrzeug Bernmobil sonstiges"@de .
+
+<kat4> a bm:DamageType, skos:Concept ;
+    rdfs:label "Haltestelle Billetautomat"@de .
+
+<kat5> a bm:DamageType, skos:Concept ;
+    rdfs:label "Haltestelle Anzeige"@de .
+
+<kat6> a bm:DamageType, skos:Concept ;
+    rdfs:label "Haltestelle sonstiges"@de .
+

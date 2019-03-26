@@ -18,14 +18,25 @@
     rdfs:subClassOf sem:Event .
 
 # TODO Domain/Range?
-<description> a rdf:Proerty ;
+<description> a rdf:Property ;
     rdfs:label "Meldung"@de ;
     rdfs:subPropertyOf skos:prefLabel .
 
-<longDescription> a rdf:Proerty ;
+<longDescription> a rdf:Property ;
     rdfs:label "Lange Meldung"@de ;
     rdfs:subPropertyOf skos:altLabel .
 
-<route> a rdf:Proerty ;
+<route> a rdf:Property ;
     rdfs:label "Linie"@de ;
     rdfs:label "Route"@en .
+
+<DamageType> a rdfs:Class ;
+    rdfs:label "Schadenskategorie"@de ;
+    rdfs:label "Damage type/category"@en .
+
+<damageType> a rdf:Property ;
+    rdfs:label "Typ der Beschädigung"@de .
+
+<owner> a rdf:Property ;
+    rdfs:label "Eigentümer der Station" ;
+    rdfs:label "Owner of the public transport stop" .
