@@ -25,7 +25,7 @@
     "convert-sap-zkdr": "mkdir -p target && java -jar tmp/lib/carml-cli.jar -f tmp/xml/ZKDR -m config/sap.ttl -of nt -o target/sap-zkdr.nt",
     "convert-sap-zlst": "mkdir -p target && java -jar tmp/lib/carml-cli.jar -f tmp/xml/ZLST -m config/sap.ttl -of nt -o target/sap-zlst.nt",
     "clean-incidents": "cat target/incidents.nt | sed '/_:/d' | sed '/<file/d' > target/incidents-clean.nt",
-    "tdb-load": "tdbloader --loc=target/tdb_bernmobil target/incidents-clean.nt target/sap-*.nt",
+    "tdb-load": "tdbloader --loc=target/tdb_bernmobil input/vocab.ttl input/skos.ttl target/incidents-clean.nt target/sap-*.nt" ,
     "tdb-query": "./scripts/tdb-query.sh",
     "tdb-dump": "./scripts/tdb-dump.sh",
     "validate-riot": "riot --validate target/everything.nt.gz",
@@ -33,6 +33,6 @@
     "bernmobil-zazuko": "env ENDPOINT=http://data.zazuko.com/bernmobil ./scripts/lindas-put-everything.sh",
     "bernmobil-integ-s3": "ENDPOINT=http://data.zazuko.com/lindas STORE_USER=$STORE_USER_INTEG STORE_PASSWORD=$STORE_PASSWORD_INTEG ./scripts/store-s3.sh",
     "bernmobil-prod-s3": "ENDPOINT=https://test.lindas-data.ch:8443/lindas STORE_USER=$STORE_USER_PROD STORE_PASSWORD=$STORE_PASSWORD_PROD ./scripts/store-s3.sh",
-    "build": "npm-run-all clean  fetch-incidents convert clean-incidents tdb-load tdb-query tdb-dump validate-riot"
+    "build": "npm-run-all clean  fetch-incidents convert-incidents clean-incidents tdb-load tdb-query tdb-dump validate-riot"
   }
 }
